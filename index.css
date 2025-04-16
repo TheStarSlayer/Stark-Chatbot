@@ -1,0 +1,109 @@
+#flex-body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto','Times New Roman', Times, serif
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    flex: 2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 9;
+    overflow-y: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    min-height: 60%;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.placeholder {
+    align-self: center;
+    font-size: 30px;
+}
+
+.chat-bubble-left,
+.chat-bubble-right {
+    padding: 16px;
+    font-size: 18px;
+    color: white;
+    text-wrap: wrap;
+    max-width: 50%;
+    border-radius: 12px;
+    line-height: 24px;
+}
+
+.chat-bubble-left {
+    background-color: blue;
+    align-self: flex-start;
+}
+
+.chat-bubble-right {
+    background-color: red;
+    align-self: flex-end;
+}
+
+#input-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+#input-bar {
+    width: 70%;
+    padding: 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    overflow: auto;
+}
+
+#input-bar:hover {
+    cursor:text;    
+}
+
+#input-bar:focus {
+    border: none;
+    outline: none;
+}
+
+#submit-btn {
+    padding: 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+#submit-btn:disabled {
+    background-color: grey;
+    color: white;
+    cursor: not-allowed;
+}
