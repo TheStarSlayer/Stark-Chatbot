@@ -51,7 +51,7 @@
     font-size: 18px;
     color: white;
     text-wrap: wrap;
-    max-width: 50%;
+    max-width: 40%;
     border-radius: 12px;
     line-height: 24px;
 }
@@ -73,6 +73,10 @@
     align-items: center;
     gap: 10px;
     flex: 1;
+    padding: 10px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12%px;
+    background-color: rgb(29, 28, 28);
 }
 
 #input-bar {
@@ -106,4 +110,15 @@
     background-color: grey;
     color: white;
     cursor: not-allowed;
+}
+
+#chat-container::-webkit-scrollbar {
+    /* width: 0; */
+    width: 0.5em;
+}
+
+#chat-container::-webkit-scrollbar-thumb {
+    background-color: white;
+    width: 0.5em;
+    border-radius: 16px;
 }

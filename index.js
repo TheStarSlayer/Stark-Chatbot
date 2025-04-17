@@ -11,8 +11,10 @@ const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 function initializeDOM() {
     let prevContext = localStorage.getItem("prevContext");
     
-    if (prevContext === "" || prevContext === null)
+    if (prevContext === "" || prevContext === null) {
+        localStorage.setItem("prevContext", "");
         return;
+    }
 
     const prevMessages = prevContext.split("_+$+_");
 
