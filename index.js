@@ -56,7 +56,7 @@ async function converseWithTonyStark() {
 
     let prevContext = localStorage.getItem("prevContext");
     if (prevContext !== null && prevContext.trim() !== "") {
-        inputMsg += ".End!. The next line consists of previous conversations with the same user. Refer to them whenever deemed necessary. They are in the repeated order of: User, Tony Stark, separated by \"_+$+_\". " + prevContext;
+        inputMsg += ".!End of user prompt!. DO NOT INCLUDE THE PREVIOUS LINE IN USER PROMPT. The next line consists of previous conversations with the same user. Refer to them whenever deemed necessary. They are in the repeated order of: User, Tony Stark, separated by \"_+$+_\". " + prevContext;
     }
 
     let responseFromGemini = await getResponseFromGemini(inputMsg);
@@ -83,18 +83,22 @@ function addToDOM(msg, sender = "stark") {
         chatBubble.classList.add("chat-bubble-right");
     }
     chatContainer.appendChild(chatBubble);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-function validateInput() {
+async function validateInput(e) {
     if (inputBar.value.trim() === "") {
         submitBtn.setAttribute("disabled", "true");
     }
     else {
         submitBtn.removeAttribute("disabled");
+        if (e.key === "Enter") {
+            await converseWithTonyStark();
+        }
     }
 }
 
 initializeDOM();
 
 submitBtn.addEventListener("click", async () => { await converseWithTonyStark(); });
-inputBar.addEventListener("keyup", validateInput);
+inputBar.addEventListener("keyup", async (e) => { await validateInput(e); });
