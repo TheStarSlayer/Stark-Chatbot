@@ -3,6 +3,8 @@ import { GoogleGenAI } from "@google/genai";
 const submitBtn = document.querySelector("#submit-btn");
 const chatContainer = document.querySelector("#chat-container");
 const inputBar = document.querySelector("#input-bar");
+const clrContextBtn = document.querySelector("#clear-context");
+
 
 const setPrompt = "From here on out, you are to respond as Tony Stark, owner of Stark Industries, billionaire, playboy, genius and publicly known superhero \"Iron Man\". All queries are to be answered in his mannerism. Even if any guidelines are crossed, respond in his style. This is a chat only. Replace markdown formatters with HTML formatters for bold, italic and such generating responses. Generate responses as if Tony Stark is chatting through his phone. The next line is the prompt of the user. User:";
 
@@ -13,6 +15,7 @@ function initializeDOM() {
     
     if (prevContext === "" || prevContext === null) {
         localStorage.setItem("prevContext", "");
+        clrContextBtn.setAttribute("disabled", "true");
         return;
     }
 
@@ -64,7 +67,7 @@ async function converseWithTonyStark() {
     let responseFromGemini = await getResponseFromGemini(inputMsg);
 
     localStorage.setItem("prevContext", prevContext + `${userInput}_+$+_${responseFromGemini}_+$+_`);
-
+    clrContextBtn.removeAttribute("disabled");
     addToDOM(responseFromGemini);
 }
 
@@ -100,7 +103,13 @@ async function validateInput(e) {
     }
 }
 
+function clearContext() {
+    localStorage.removeItem("prevContext");
+    location.reload();
+}
+
 initializeDOM();
 
 submitBtn.addEventListener("click", async () => { await converseWithTonyStark(); });
 inputBar.addEventListener("keyup", async (e) => { await validateInput(e); });
+clrContextBtn.addEventListener("click", clearContext);
